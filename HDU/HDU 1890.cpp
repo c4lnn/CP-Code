@@ -43,7 +43,6 @@ struct Splay {
     }
     void rotate(int x) {
         int y=fa[x],z=fa[y];
-        push_down(z);
         push_down(y);
         push_down(x);
         int chk=get(x);
@@ -53,22 +52,12 @@ struct Splay {
         fa[y]=x,fa[x]=z;
         if(z) ch[z][y==ch[z][1]]=x;
         push_up(y);
-        push_up(x);
     }
     void splay(int x) {
         push_down(x);
-        for(int f=fa[x];f=fa[x],f;rotate(x)) {
-            if(fa[f]) {
-                push_down(fa[f]);
-                push_down(f);
-                push_down(x);
-                rotate(get(x)==get(f)?f:x);
-            }
-            else {
-                push_down(f);
-                push_down(x);
-            }
-        }
+        for(int f=fa[x];f=fa[x],f;rotate(x)) if(fa[f])
+            rotate(get(x)==get(f)?f:x);
+        push_up(x);
         rt=x;
     }
     int pre() {
@@ -78,7 +67,7 @@ struct Splay {
         splay(cur);
         return cur;
     }
-    void del(int x) {
+    void del() {
         if(!ch[rt][0]&&!ch[rt][1]) {
             clear(rt);
             rt=0;
@@ -98,9 +87,9 @@ struct Splay {
         }
         else {
             int cur=rt;
-            x=pre();
-            fa[ch[cur][1]]=x;
-            ch[x][1]=ch[cur][1];
+            pre();
+            fa[ch[cur][1]]=rt;
+            ch[rt][1]=ch[cur][1];
             clear(cur);
             push_up(rt);
         }
@@ -109,7 +98,7 @@ struct Splay {
         splay(x);
         mark[ch[rt][0]]^=1;
         printf("%d%c",sz[ch[rt][0]]+t,t==n?'\n':' ');
-        del(rt);
+        del();
     }
 }splay;
 bool cmp(PII a,PII b) {
