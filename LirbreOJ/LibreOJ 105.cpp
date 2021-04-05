@@ -18,7 +18,7 @@ typedef vector<PII> VPII;
 const int N=1e5+5;
 int n,m;
 struct Splay {
-    int rt,cnt,ch[N][2],sz[N],val[N],fa[N],mark[N];
+    int rt,cnt,ch[N][2],sz[N],fa[N],mark[N];
     bool get(int x) {return x==ch[fa[x]][1];}
     void push_up(int x) {sz[x]=sz[ch[x][0]]+sz[ch[x][1]]+1;}
     void push_down(int x) {
@@ -28,6 +28,16 @@ struct Splay {
             mark[x]=0;
             swap(ch[x][0],ch[x][1]);
         }
+    }
+    void build(int l,int r,int f) {
+        if(l>r) return;
+        int mid=l+r>>1;
+        ch[mid][0]=ch[mid][1]=0;
+        if(f==-1) rt=mid,fa[rt]=0;
+        else ch[f][r>f]=mid,fa[mid]=f;
+        build(l,mid-1,mid);
+        build(mid+1,r,mid);
+        push_up(mid);
     }
     void rotate(int x) {
         int y=fa[x],z=fa[y];
@@ -47,26 +57,6 @@ struct Splay {
             rotate(get(x)==get(f)?f:x);
         push_up(x);
         if(!t) rt=x;
-    }
-    void insert(int x) {
-        val[++cnt]=x;
-        if(!rt) {
-            rt=cnt;
-            push_up(rt);
-            return;
-        }
-        int cur=rt,f=0;
-        for(;;) {
-            f=cur;
-            cur=ch[cur][val[cur]<x];
-            if(!cur) {
-                fa[cnt]=f;
-                ch[f][val[f]<x]=cnt;
-                push_up(cnt),push_up(f);
-                splay(cnt,0);
-                break;
-            }
-        }
     }
     int kth(int k) {
         int cur=rt;
@@ -93,7 +83,7 @@ struct Splay {
         if(u) {
             push_down(u);
             print(ch[u][0]);
-            if(val[u]>1&&val[u]<n+2) cout<<val[u]-1<<' ';
+            if(u>1&&u<n+2) cout<<u-1<<' ';
             print(ch[u][1]);
         }
     }
@@ -102,7 +92,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cin>>n>>m;
-    for(int i=1;i<=n+2;i++) splay.insert(i);
+    splay.build(1,n+2,-1);
     for(int i=1;i<=m;i++) {
         int l,r;
         cin>>l>>r;
