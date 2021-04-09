@@ -8,11 +8,13 @@
 #define SE second
 using namespace std;
 typedef double DB;
+typedef long double LD;
 typedef long long LL;
+typedef unsigned long long ULL;
 typedef pair<int,int> PII;
 typedef vector<int> VI;
 typedef vector<PII> VPII;
-//head
+// head
 const int N=600005;
 int tr[N*24][2],mx[N*24];
 int s[N],rt[N],n,m,cnt;
@@ -31,7 +33,6 @@ int query(int now,int w,int pos,int t) {
     else return query(tr[now][c],w,pos-1,t);
 }
 int main() {
-    //freopen("E:/OneDrive/Practice/in.txt","r",stdin);
     scanf("%d%d",&n,&m);
     mx[0]=-1;
     rt[0]=++cnt;
