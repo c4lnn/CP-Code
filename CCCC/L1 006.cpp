@@ -20,17 +20,14 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     LL x;cin>>x;
-    fac[0]=1;
-    for(int i=1;i<=13;i++) fac[i]=fac[i-1]*i;
-    int mx=0,ll;
-    for(int l=2;l*(l+1);l++) {
-        for(int r=l;r<=13;r++) if(x%(fac[r]/fac[l-1])==0) {
-            int t=x/fac[r]/fac[l-1];
-            if(t>l&&t<r) continue;
-            if(r-l+1>mx) mx=r-l+1,ll=l;
-        }
+    LL mx=0,l;
+    for(LL i=2;i*i<=x;i++) if(x%i==0) {
+        LL j=i,t=x;
+        for(;j>1&&t%j==0;t/=j,j--) {}
+        if(i-j>mx) mx=i-j,l=j+1;
     }
+    if(!mx) mx=1,l=x;
     cout<<mx<<'\n';
-    for(int i=ll;i<ll+mx;i++) cout<<i<<"*\n"[i==ll+mx-1];
+    for(LL i=l;i<l+mx;i++) cout<<i<<"*\n"[i==l+mx-1];
     return 0;
 }
