@@ -42,7 +42,7 @@ int main() {
                 if(t<dp1[i]||t==dp1[i]&&path[i^(1<<j)]+(char)(j+'a')<path[i]) {
                     dp1[i]=t;
                     dp2[i]=dp2[i^(1<<j)]+a[j].c;
-                    path[i]=path[i^(1<<j)]+char(j+'a');
+                    path[i]=path[i^(1<<j)]+(char)(j+'a');
                 }
             }
         }
