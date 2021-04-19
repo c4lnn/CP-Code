@@ -1,13 +1,9 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-
 const int N=1e5+5;
-
 int n;
 int trie[N*31][2];
 int cnt;
-
 void insert(int a)
 {
     int pre=0;
@@ -33,7 +29,7 @@ int main()
     for(int i=1;i<=n;i++)
     {
         int a;
-		cin>>a;
+        cin>>a;
         insert(a);
     }
     cout<<dfs(0,30,0)<<endl;
