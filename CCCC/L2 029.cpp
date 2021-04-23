@@ -35,7 +35,7 @@ int dfs(int x,int pre,int tot) {
     int ret=dfs(get(x),x,tot+1);
     st[x]=false;
     if(ret==-1) return -1;
-    if(pre<l||pre>r&&cnt[x]==-1) cnt[x]=ret-tot;
+    if((pre<l||pre>r)&&cnt[x]==-1) cnt[x]=ret-tot;
     else cnt[x]=0;
     return ret;
 }
