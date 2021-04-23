@@ -52,8 +52,8 @@ void push_up(R &a,R b,R c) {
     a.r_down.SE=c.r_down.SE+(c.l_down.SE==c.rs-c.ls+1&&b.r_down.FI>c.l_down.FI?b.r_down.SE:0);
 }
 void build(int p,int l,int r) {
-    node[p].ls=l,node[p].rs=r;
     if(l==r) {
+        node[p].ls=node[p].rs=l;
         node[p].up_len=node[p].down_len=1;
         node[p].l_up=node[p].l_down=node[p].r_up=node[p].r_down=MP(a[id[l]],1);
         return;
