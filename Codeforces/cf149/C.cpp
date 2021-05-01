@@ -43,9 +43,7 @@ int main() {
     }
     cout<<SZ(p)<<'\n';
     for(int i=0;i<SZ(p);i++) cout<<p[i].SE<<" \n"[i==SZ(p)-1];
-    cout<<'\n';
     cout<<SZ(q)<<'\n';
     for(int i=0;i<SZ(q);i++) cout<<q[i].SE<<" \n"[i==SZ(q)-1];
-    cout<<'\n';
     return 0;
 }
