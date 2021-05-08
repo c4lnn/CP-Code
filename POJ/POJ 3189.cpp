@@ -57,14 +57,10 @@ bool check(int l,int r) {
     return false;
 }
 int main() {
-    //freopen("E:/OneDrive/Practice/in.txt","r",stdin);
     scanf("%d%d",&n,&m);
     for(int i=1;i<=n;i++)
-        for(int j=1;j<=m;j++) {
-            int x;
-            scanf("%d",&x);
-            f[i][j]=x;
-        }
+        for(int j=1;j<=m;j++)
+            scanf("%d",&f[i][j]);
     for(int i=1;i<=m;i++) scanf("%d",&cap[i]);
     int l=1,r=1,res=0x3f3f3f3f;
     while(l<=r&&r<=m) {
