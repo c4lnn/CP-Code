@@ -30,7 +30,6 @@ int main() {
         cout<<n-1<<'\n';
         for(int i=pos-1,t=a[pos];i>=1;i--) cout<<i<<' '<<pos<<' '<<++t<<' '<<a[pos]<<'\n';
         for(int i=pos+1,t=a[pos];i<=n;i++) cout<<i<<' '<<pos<<' '<<++t<<' '<<a[pos]<<'\n';
-
     }
     return 0;
 }
