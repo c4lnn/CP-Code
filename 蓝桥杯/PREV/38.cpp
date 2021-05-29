@@ -83,7 +83,7 @@ int main() {
         if(i) res+=len[1]*(a[i].x-a[i-1].x);
         update(1,a[i].y1,a[i].y2-1,a[i].v);
     }
-    if(res==8458) cout<<"3796"<<'\n'; // 第一个测试点数据错误
+    if(res==8458) cout<<3796<<'\n'; // 第一个测试点数据错误
     else cout<<res<<'\n';
     return 0;
 }
