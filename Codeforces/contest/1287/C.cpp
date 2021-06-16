@@ -1,18 +1,14 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-
 const int N=105;
-
 int n;
 int a[N];
 int dp[N][N][2];
-
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    //freopen("in.txt","r",stdin);
     cin>>n;
     for(int i=1;i<=n;i++) cin>>a[i];
     memset(dp,0x3f,sizeof dp);
