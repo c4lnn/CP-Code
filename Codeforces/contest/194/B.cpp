@@ -20,13 +20,9 @@ int main() {
     cin.tie(nullptr);
     int T;cin>>T;
     while(T--) {
-        int a,b,c;cin>>a>>b>>c;
-        int d=1;
-        while((int)(log10(d)+1)<c) d<<=1;
-        int x=d,y=d;
-        while((int)(log10(x)+1)<a) x<<=1;
-        while((int)(log10(y)+1)<b) y*=3;
-        cout<<x<<' '<<y<<'\n';
+        LL n;cin>>n;
+        LL a=n+1,b=4*n;
+        cout<<b/__gcd(a,b)+1<<'\n';
     }
     return 0;
 }
