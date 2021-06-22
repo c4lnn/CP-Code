@@ -109,7 +109,7 @@ int main() {
             g[u].PB(MP(v,w));
             g[v].PB(MP(u,w));
         }
-        divide(1);
+        sz[1]=n;divide(1);
         cout<<res<<'\n';
     }
     return 0;
