@@ -16,10 +16,10 @@ void insert(int a)
 }
 int dfs(int pre,int t,int res)
 {
-	if(t==-1) return res;
-	if(trie[pre][0]&&!trie[pre][1]) return dfs(trie[pre][0],t-1,res);
+    if(t==-1) return res;
+    if(trie[pre][0]&&!trie[pre][1]) return dfs(trie[pre][0],t-1,res);
     else if(!trie[pre][0]&&trie[pre][1]) return dfs(trie[pre][1],t-1,res);
-	return min(dfs(trie[pre][0],t-1,res+(1<<t)),dfs(trie[pre][1],t-1,res+(1<<t)));
+    return min(dfs(trie[pre][0],t-1,res+(1<<t)),dfs(trie[pre][1],t-1,res+(1<<t)));
 }
 int main()
 {

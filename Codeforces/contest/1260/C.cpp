@@ -12,11 +12,11 @@ int main()
     int T;cin>>T;
     while(T--)
     {
-    	ll r,b,k;
-    	cin>>r>>b>>k;
-    	if(r>b) swap(r,b);
-    	if(gcd(b,r)+(k-1)*r>=b) cout<<"OBEY"<<endl;
-    	else cout<<"REBEL"<<endl;
+        ll r,b,k;
+        cin>>r>>b>>k;
+        if(r>b) swap(r,b);
+        if(gcd(b,r)+(k-1)*r>=b) cout<<"OBEY"<<endl;
+        else cout<<"REBEL"<<endl;
     }
     return 0;
 }

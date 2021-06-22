@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 const int N=55;
 
 int n,k;
@@ -19,11 +19,11 @@ int main()
     int key=a[k]?a[k]:1;
     for(int i=1;i<=n;i++)
     {
-    	if(a[i]<key)
-    	{
-    		cout<<i-1<<endl;
-    		return 0;
-    	}
+        if(a[i]<key)
+        {
+            cout<<i-1<<endl;
+            return 0;
+        }
     }
     cout<<n<<endl;
     return 0;

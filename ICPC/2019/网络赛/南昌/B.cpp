@@ -22,7 +22,7 @@ void addEdge(int a,int b,int d) {
     head[a]=cnt;
 }
 void dijkstra() {
-	priority_queue<pii,vector<pii>,greater<pii> >q;
+    priority_queue<pii,vector<pii>,greater<pii> >q;
     q.push(pii(0,o));
     while(!q.empty()) {
         int u=q.top().second;

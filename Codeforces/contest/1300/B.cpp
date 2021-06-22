@@ -12,11 +12,11 @@ int main() {
     cin.tie(0);
     int T;cin>>T;
     while(T--) {
-    	cin>>n;
-    	n+=n;
-    	for(int i=1;i<=n;i++) cin>>a[i];
-    	sort(a+1,a+1+n);
-    	cout<<abs(a[n/2]-a[n/2+1])<<endl;
-	}
- 	return 0;
+        cin>>n;
+        n+=n;
+        for(int i=1;i<=n;i++) cin>>a[i];
+        sort(a+1,a+1+n);
+        cout<<abs(a[n/2]-a[n/2+1])<<endl;
+    }
+    return 0;
 }

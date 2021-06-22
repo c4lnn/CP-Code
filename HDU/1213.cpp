@@ -28,28 +28,28 @@ typedef vector<PII> VPII;
 const int N=30005;
 int n,m,fa[N],res;
 int get(int x) {
-	if(x==fa[x]) return x;
-	return fa[x]=get(fa[x]);
+    if(x==fa[x]) return x;
+    return fa[x]=get(fa[x]);
 }
 void merge(int x,int y) {
-	int tx=get(x),ty=get(y);
-	if(tx==ty) return;
-	fa[tx]=ty;
-	res--;
-} 
+    int tx=get(x),ty=get(y);
+    if(tx==ty) return;
+    fa[tx]=ty;
+    res--;
+}
 int main() {
-	int T;
-	scanf("%d",&T);
-	while(T--) {
-		scanf("%d%d",&n,&m);
-		for(int i=1;i<=n;i++) fa[i]=i;
-		res=n;
-		for(int i=1;i<=m;i++) {
-			int x,y;
-			scanf("%d%d",&x,&y);
-			merge(x,y);
-		}
-		printf("%d\n",res);
-	}
+    int T;
+    scanf("%d",&T);
+    while(T--) {
+        scanf("%d%d",&n,&m);
+        for(int i=1;i<=n;i++) fa[i]=i;
+        res=n;
+        for(int i=1;i<=m;i++) {
+            int x,y;
+            scanf("%d%d",&x,&y);
+            merge(x,y);
+        }
+        printf("%d\n",res);
+    }
     return 0;
 }

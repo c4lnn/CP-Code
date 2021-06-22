@@ -12,19 +12,19 @@ int ans;
 
 int main()
 {
-	cin>>n>>k;
-	for(int i=1;i<=n;i++) cin>>s[i],m[s[i]]++;    
+    cin>>n>>k;
+    for(int i=1;i<=n;i++) cin>>s[i],m[s[i]]++;
     for(int i=1;i<=n;i++)
-    	for(int j=i+1;j<=n;j++)
-    	{
-    		string t="";
-    		for(int p=0;p<k;p++)
-    		{
-    			if(s[i][p]==s[j][p]) t+=s[i][p];
-    			else t+=SET-s[i][p]-s[j][p];
-    		}
-    		ans+=m.count(t);
-    	}
+        for(int j=i+1;j<=n;j++)
+        {
+            string t="";
+            for(int p=0;p<k;p++)
+            {
+                if(s[i][p]==s[j][p]) t+=s[i][p];
+                else t+=SET-s[i][p]-s[j][p];
+            }
+            ans+=m.count(t);
+        }
     cout<<ans/3<<endl;
     return 0;
 }
