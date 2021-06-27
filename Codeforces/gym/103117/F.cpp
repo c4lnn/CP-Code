@@ -17,86 +17,83 @@ typedef vector<PII> VPII;
 // head
 const int N=605;
 const int INF=0x3f3f3f3f;
-int a[N],dist[N],h[N],preu[N],pree[N*5],st[N],id[N];
-VI g[N];
-struct E {
-    int v,c,w;
-    E(){}
-    E(int v,int c,int w):v(v),c(c),w(w){}
-};
-vector<E> e;
-void init(int n) {
-    for(int i=1;i<=n;i++) {
-        h[i]=0;
-        g[i].clear();
+int a[N],st[N],id[N];
+struct MAXIMUM_FLOW {
+    int n,s,t,d[N],cur[N];
+    VI g[N];
+    VPII e;
+    void init() {
+        for(int i=1;i<=n;i++) g[i].clear();
+        e.clear();
     }
-    e.clear();
-}
-void add_edge(int u,int v,int c,int w) {
-    e.EB(v,c,w);
-    e.EB(u,0,-w);
-    g[u].PB(SZ(e)-2);
-    g[v].PB(SZ(e)-1);
-}
-bool dijkstra(int n,int s,int t) {
-    for(int i=1;i<=n;i++) dist[i]=INF;
-    priority_queue<PII,VPII,greater<PII>> q;
-    dist[s]=0;
-    q.emplace(0,s);
-    while(SZ(q)) {
-        int d=q.top().FI,u=q.top().SE;
-        q.pop();
-        if(dist[u]!=d) continue;
-        for(auto x:g[u]) {
-            int v=e[x].v,c=e[x].c,w=e[x].w;
-            if(c>0&&dist[v]>dist[u]-h[v]+w+h[u]) {
-                dist[v]=dist[u]-h[v]+w+h[u];
-                preu[v]=u;
-                pree[v]=x;
-                q.emplace(dist[v],v);
+    void add_edge(int u,int v,int c) {
+        e.EB(v,c);
+        e.EB(u,0);
+        g[u].PB(SZ(e)-2);
+        g[v].PB(SZ(e)-1);
+    }
+    bool bfs() {
+        for(int i=1;i<=n;i++) d[i]=0;
+        queue<int> q;
+        q.push(s);
+        d[s]=1;
+        while(SZ(q)) {
+            int u=q.front();
+            q.pop();
+            for(auto x:g[u]) {
+                int v=e[x].FI,c=e[x].SE;
+                if(d[v]||c<=0) continue;
+                d[v]=d[u]+1;
+                q.push(v);
             }
         }
+        return d[t];
     }
-    return dist[t]!=INF;
-}
-PII mcmf(int n,int s,int t) {
-    int flow=0,cost=0;
-    while(dijkstra(n,s,t)) {
-        int c=INF;
-        for(int i=1;i<=n;i++) h[i]=min(INF,h[i]+dist[i]);
-        for(int u=t;u!=s;u=preu[u]) c=min(c,e[pree[u]].c);
-        flow+=c;
-        cost+=c*h[t];
-        for(int u=t;u!=s;u=preu[u]) {
-            e[pree[u]].c-=c;
-            e[pree[u]^1].c+=c;
+    int dfs(int u,int a) {
+        if(u==t) return a;
+        int f,flow=0;
+        for(int &i=cur[u];i<SZ(g[u]);i++) {
+            int v=e[g[u][i]].FI,&c=e[g[u][i]].SE;
+            if(d[v]!=d[u]+1||c<=0||(f=dfs(v,min(a,c)))<=0) continue;
+            c-=f;
+            e[g[u][i]^1].SE+=f;
+            a-=f;
+            flow+=f;
+            if(a==0) break;
         }
+        return flow;
     }
-    return MP(flow,cost);
-}
+    int dinic() {
+        int flow=0;
+        while(bfs()) {
+            for(int i=1;i<=n;i++) cur[i]=0;
+            flow+=dfs(s,INF);
+        }
+        return flow;
+    }
+} mf;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int T;cin>>T;
     while(T--) {
         int n,m;cin>>n>>m;
-        int s=n+m+1,t=s+1;
-        init(t);
+        mf.s=n+m+1,mf.n=mf.t=mf.s+1;
+        mf.init();
         for(int i=1;i<=n;i++) {
             cin>>a[i];
-            add_edge(m+i,t,a[i],0);
-            add_edge(m+i,t,INF,1);
+            mf.add_edge(m+i,mf.t,a[i]);
         }
         for(int i=1;i<=m;i++) {
             int u,v;cin>>u>>v;
-            add_edge(s,i,1,0);
-            add_edge(i,m+u,1,0);
-            add_edge(i,m+v,1,0);
-            id[i]=SZ(e)-4;
+            mf.add_edge(mf.s,i,1);
+            mf.add_edge(i,m+u,1);
+            mf.add_edge(i,m+v,1);
+            id[i]=SZ(mf.e)-4;
         }
-        cout<<mcmf(t,s,t).SE<<'\n';
+        cout<<m-mf.dinic()<<'\n';
         for(int i=1;i<=m;i++) st[i]=0;
-        for(int i=1;i<=m;i++) if(!e[id[i]].c) {
+        for(int i=1;i<=m;i++) if(!mf.e[id[i]].SE) {
             st[i]=1;
         }
         for(int i=1;i<=m;i++) cout<<st[i];
