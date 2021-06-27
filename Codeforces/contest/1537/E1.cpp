@@ -20,35 +20,12 @@ int main() {
     cin.tie(nullptr);
     int n,m;cin>>n>>m;
     string s;cin>>s;
+    int mx=1;
     for(int i=1;i<n;i++) {
-        if(s[i]>s[0]) {
-            for(int k=0;k<m;k++) cout<<s[k%i];
-            cout<<'\n';
-            return 0;
-        }
-        else if(s[i]==s[0]) {
-            bool f=false;
-            for(int j=1;j<=i-1;j++) {
-                if(i+j>=n) {
-                    for(int k=0;k<m;k++) cout<<s[k%i];
-                    cout<<'\n';
-                    return 0;
-                }
-                if(s[i+j]>s[j]) {
-                    for(int k=0;k<m;k++) cout<<s[k%i];
-                    cout<<'\n';
-                    return 0;
-                }
-                else if(s[i+j]<s[j]) {
-                    i=i+j;
-                    f=true;
-                    break;
-                }
-            }
-            if(!f) i+=i-1;
-        }
+        if(s[i]>s[i%mx]) break;
+        else if(s[i]<s[i%mx]) mx=i+1;
     }
-    for(int k=0;k<m;k++) cout<<s[k%n];
+    for(int i=0;i<m;i++) cout<<s[i%mx];
     cout<<'\n';
     return 0;
 }
