@@ -67,7 +67,7 @@ void calc(int u) {
             for(int j=l;j<=r;j++) mn[dist[a[j]]]=min(mn[dist[a[j]]],dep[a[j]]);
             l=r=i;
         }
-        res=min(res,dep[a[i]]+mn[k-dist[a[i]]]);
+        if(k-dist[a[i]]>=0) res=min(res,dep[a[i]]+mn[k-dist[a[i]]]);
     }
     for(int i=1;i<=cnt;i++) mn[dist[a[i]]]=0x3f3f3f3f;
 }
