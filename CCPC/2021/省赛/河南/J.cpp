@@ -33,7 +33,6 @@ int main() {
     for(int i=n;i>=1;i--) cin>>a[i];
     for(int i=n+1;i<=n+m;i++) cin>>a[i];
     for(int i=1;i<=n+m;i++) b[i]=i;
-    int aa=1;
     sort(b+1,b+1+n+m,[](int x,int y) {
         return a[x]>a[y];
     });
