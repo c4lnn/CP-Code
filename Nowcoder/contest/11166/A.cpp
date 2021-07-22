@@ -15,16 +15,30 @@ typedef pair<int,int> PII;
 typedef vector<int> VI;
 typedef vector<PII> VPII;
 // head
-bool sg[5005][5005];
+const int N=5e3+5;
+bool st[N][N];
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    for(int i=0;i<1360*2;i+=2) sg[a[i]][a[i+1]]=true;
+    for(int i=0;i<N;i++) {
+        for(int j=0;j<N;j++) if(!st[i][j]) {
+            for(int k=1;i+k<N;k++) {
+                for(int l=0;j+l<N;l+=k) {
+                    st[i+k][j+l]=true;
+                }
+            }
+            for(int k=1;j+k<N;k++) {
+                for(int l=0;i+l<N;l+=k) {
+                    st[i+l][j+k]=true;
+                }
+            }
+            break;
+        }
+    }
     int T;cin>>T;
     while(T--) {
         int n,m;cin>>n>>m;
-        if(n>m) swap(n,m);
-        cout<<(!sg[n][m]?"Alice":"Bob")<<'\n';
+        cout<<(st[n][m]?"Alice":"Bob")<<'\n';
     }
     return 0;
 }
