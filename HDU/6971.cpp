@@ -32,12 +32,12 @@ int main() {
             int x;cin>>x;
             minb[i]=maxb[i]=x;
         }
-        for(int i=n-1;~i;i--) {
-            for(int j=0;j<18;j++) if(i&(1<<j)) {
-                mina[i^(1<<j)]=min(mina[i^(1<<j)],mina[i]);
-                minb[i^(1<<j)]=min(minb[i^(1<<j)],minb[i]);
-                maxa[i^(1<<j)]=max(maxa[i^(1<<j)],maxa[i]);
-                maxb[i^(1<<j)]=max(maxb[i^(1<<j)],maxb[i]);
+        for(int i=0;i<18;i++) {
+            for(int j=n-1;~j;j--) if(j&(1<<i)) {
+                mina[j^(1<<i)]=min(mina[j^(1<<i)],mina[j]);
+                minb[j^(1<<i)]=min(minb[j^(1<<i)],minb[j]);
+                maxa[j^(1<<i)]=max(maxa[j^(1<<i)],maxa[j]);
+                maxb[j^(1<<i)]=max(maxb[j^(1<<i)],maxb[j]);
             }
         }
         LL res=0,mx=LLONG_MIN;

@@ -26,9 +26,9 @@ int main() {
         cin>>a[i];
         mx[a[i]]=a[i];
     }
-    for(int i=0;i<1<<22;i++) {
-        for(int j=0;j<22;j++) if(i&(1<<j)) {
-            mx[i]=max(mx[i],mx[i^(1<<j)]);
+    for(int i=0;i<22;i++) {
+        for(int j=0;j<1<<22;j++) if(j&(1<<i)) {
+            mx[j]=max(mx[j],mx[j^(1<<i)]);
         }
     }
     for(int i=1;i<=n;i++) cout<<mx[((1<<22)-1)^a[i]]<<" \n"[i==n];
