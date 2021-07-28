@@ -17,7 +17,7 @@ typedef vector<PII> VPII;
 // head
 const LL MOD=1e9+7;
 const int N=2e6+5;
-int tot[N],cnt[N];
+LL tot[N];
 LL qpow(LL a,LL b) {
     LL ret=1;
     while(b) {
@@ -40,11 +40,12 @@ int main() {
             tot[j^(1<<i)]+=tot[j];
         }
     }
-    for(int i=1;i<1<<20;i++) cnt[i]=cnt[i&(i-1)]+1;
-    LL res=0;
-    for(int i=0;i<1<<20;i++) {
-        res=(res+(cnt[i]&1?-1:1)*(qpow(2,tot[i])-1+MOD)%MOD+MOD)%MOD;
+    for(int i=0;i<1<<20;i++) tot[i]=(qpow(2,tot[i])-1+MOD)%MOD;
+    for(int i=19;~i;i--) {
+        for(int j=(1<<20)-1;~j;j--) if(j&(1<<i)) {
+            tot[j^(1<<i)]=(tot[j^(1<<i)]+MOD-tot[j])%MOD;
+        }
     }
-    cout<<res<<'\n';
+    cout<<tot[0]<<'\n';
     return 0;
 }
