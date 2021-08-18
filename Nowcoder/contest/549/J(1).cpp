@@ -1,3 +1,4 @@
+// 调和级数
 #include <bits/stdc++.h>
 #define SZ(x) (int)(x).size()
 #define ALL(x) (x).begin(),(x).end()
@@ -17,8 +18,7 @@ typedef vector<PII> VPII;
 // head
 const LL MOD=1e9+7;
 const int N=1e6+5;
-int mn[N];
-LL mu[N],sum[N];
+int mn[N],mu[N];
 VI p;
 void get_mu(int n) {
     mu[1]=1;
@@ -31,32 +31,19 @@ void get_mu(int n) {
             mu[x*i]=-mu[i];
         }
     }
-    for(int i=1;i<=n;i++) mu[i]=(mu[i-1]+MOD+mu[i])%MOD;
-    for(int i=1;i<=n;i++) sum[i]=(sum[i-1]+1ll*i*i%MOD)%MOD;
-}
-LL g(int n,int m) {
-    int lim=min(n,m);
-    LL ret=0;
-    for(int l=1,r;l<=lim;l=r+1) {
-        r=min(n/(n/l),m/(m/l));
-        ret=(ret+(mu[r]+MOD-mu[l-1])%MOD*(n/l)%MOD*(m/l)%MOD)%MOD;
-    }
-    return ret;
-}
-LL f(int n,int m) {
-    int lim=min(n,m);
-    LL ret=0;
-    for(int l=1,r;l<=lim;l=r+1) {
-        r=min(n/(n/l),m/(m/l));
-        ret=(ret+(sum[r]+MOD-sum[l-1])%MOD*g(n/l,m/l)%MOD)%MOD;
-    }
-    return ret;
 }
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int n,m;cin>>n>>m;
     get_mu(1e6);
-    cout<<f(n,m)<<'\n';
+    LL res=0;
+    int lim=min(n,m);
+    for(int i=1;i<=lim;i++) {
+        for(int j=i;j<=lim;j+=i) {
+            res=(res+1ll*i*i%MOD*mu[j/i]*(n/j)%MOD*(m/j)%MOD)%MOD;
+        }
+    }
+    cout<<res<<'\n';
     return 0;
 }
