@@ -33,13 +33,13 @@ int query(int x,int k) {
     for(int i=29;~i;i--) {
         int v=(x>>i)&1;
         if(!((k>>i)&1)) {
-            if(tr[u][v^1]) res=max(res,mx[tr[u][v^1]]);
-            if(tr[u][v]) u=tr[u][v];
+            res=max(res,mx[tr[u][v^1]]);
+            u=tr[u][v];
         }
-        else if(tr[u][v^1]) u=tr[u][v^1];
-        else break;
-        if(!i) res=max(res,mx[u]);
+        else u=tr[u][v^1];
+        if(!u) break;
     }
+    if(u) res=max(res,mx[u]);
     return res;
 }
 int main() {
