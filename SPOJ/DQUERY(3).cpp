@@ -1,3 +1,4 @@
+// 莫队
 #include <bits/stdc++.h>
 #define SZ(x) (int)(x).size()
 #define ALL(x) (x).begin(),(x).end()
