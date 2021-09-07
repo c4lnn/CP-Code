@@ -23,8 +23,8 @@ struct Q {
     Q(int l,int r,int id):l(l),r(r),id(id) {}
     bool operator < (const Q &T) const {
         if(l/unit!=T.l/unit) return l<T.l;
-        if((l/unit)&1) return r<T.r;
-        return r>T.r;
+        if((l/unit)&1) return r>T.r;
+        return r<T.r;
     }
 } q[200005];
 void move(int x,int v) {
@@ -33,14 +33,14 @@ void move(int x,int v) {
     if(v==1&&cnt[a[x]]==1) ++ans;
 }
 void mo() {
-    unit=int(ceil(1.0*n/pow(n,0.5)));
+    unit=int(ceil(n/pow(n,0.5)));
     sort(q,q+m);
-    int l=0,r=0;
+    int l=0,r=-1;
     for(int i=0;i<m;i++) {
         while(l>q[i].l) move(--l,1);
-        while(r<q[i].r) move(r++,1);
+        while(r<q[i].r) move(++r,1);
         while(l<q[i].l) move(l++,-1);
-        while(r>q[i].r) move(--r,-1);
+        while(r>q[i].r) move(r--,-1);
         res[q[i].id]=ans;
     }
 }
@@ -52,7 +52,7 @@ int main() {
     cin>>m;
     for(int i=0;i<m;i++) {
         cin>>q[i].l>>q[i].r;
-        --q[i].l;
+        --q[i].l,--q[i].r;
         q[i].id=i;
     }
     mo();
