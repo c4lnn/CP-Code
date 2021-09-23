@@ -47,9 +47,8 @@ struct P {
 }p[N],stk[N];
 void andrew() {
     sort(p+1,p+1+n);
-    for(int i=1;i<=min(n,2);i++) stk[++top]=p[i];
-    if(n==2&&stk[1]==stk[2]) --top;
-    if(n<=2) return;
+    // 有重复点需要去重，至少三个不相同的点才能构成凸包，根据题意判断点或线段的特殊情况
+    for(int i=1;i<=2;i++) stk[++top]=p[i];
     for(int i=3;i<=n;i++) {
         while(top>=2&&sgn((stk[top]-stk[top-1])^(p[i]-stk[top]))<=0) --top;
         stk[++top]=p[i];
@@ -60,7 +59,7 @@ void andrew() {
         while(top>=temp&&sgn((stk[top]-stk[top-1])^(p[i]-stk[top]))<=0) --top;
         stk[++top]=p[i];
     }
-    if(top==2&&stk[1]==stk[2]) --top;
+    // 1 和 top 为同一个点，凸包上共有 top - 1 个点
 }
 int main() {
     //freopen("E:/OneDrive/IO/in.txt","r",stdin);
