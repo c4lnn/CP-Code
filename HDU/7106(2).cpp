@@ -40,9 +40,9 @@ int main() {
             res=min({res,get(g[i][0],i),get(g[i][r],i)});
             if(a>0) {
                 DB mid=-1.0*b/(2*a);
-                int pos=upper_bound(g[i].begin(),g[i].begin()+r+1,mid>0?floor(mid):ceil(mid))-g[i].begin()-1;
+                int pos=upper_bound(g[i].begin(),g[i].begin()+r+1,mid>0?floor(mid):floor(mid))-g[i].begin()-1;
                 if(pos>=0) res=min(res,get(g[i][pos],i));
-                pos=lower_bound(g[i].begin(),g[i].begin()+r+1,mid>0?ceil(mid):floor(mid))-g[i].begin();
+                pos=lower_bound(g[i].begin(),g[i].begin()+r+1,mid>0?ceil(mid):ceil(mid))-g[i].begin();
                 if(pos<=r) res=min(res,get(g[i][pos],i));
             }
         }
