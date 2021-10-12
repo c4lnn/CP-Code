@@ -17,8 +17,6 @@ typedef vector<LL> VLL;
 typedef vector<PII> VPII;
 // head
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
     int a, b;
     while (cin >> a >> b) {
         if(!a && !b) break;
