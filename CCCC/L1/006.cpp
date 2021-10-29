@@ -18,13 +18,13 @@ typedef vector<PII> VPII;
 LL fac[20];
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    cin.tie(0);
     LL x;cin>>x;
     LL mx=0,l;
     for(LL i=2;i*i<=x;i++) if(x%i==0) {
         LL j=i,t=x;
-        for(;j>1&&t%j==0;t/=j,j--) {}
-        if(i-j>mx) mx=i-j,l=j+1;
+        while(t%j==0) t/=j++;
+        if(j-i>mx) mx=j-i,l=i;
     }
     if(!mx) mx=1,l=x;
     cout<<mx<<'\n';
