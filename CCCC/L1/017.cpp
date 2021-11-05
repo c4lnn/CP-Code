@@ -24,6 +24,6 @@ int main() {
     int cnt=0;
     for(auto c:s) if(c=='2') ++cnt;
     if((s[SZ(s)-1]-'0')%2==0) f2=2;
-    printf("%.2lf\%\n",100.0*cnt/len*f1*f2);
+    printf("%.2lf%%\n",100.0*cnt/len*f1*f2);
     return 0;
 }
