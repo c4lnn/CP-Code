@@ -23,16 +23,16 @@ int main() {
     cin.tie(nullptr);
     int n,m;cin>>m>>n;
     string s;cin>>s;
-    fill(pos,pos+26,SZ(s)+1);
-    for(int i=0;i<=18;i++) f[SZ(s)+1][i]=SZ(s)+1;
-    for(int i=SZ(s)-1;~i;i--) {
+    fill(pos,pos+26,n+1);
+    for(int i=0;i<=18;i++) f[n+1][i]=n+1;
+    for(int i=n-1;~i;i--) {
         for(int j=0;j<m;j++) {
             f[i+1][0]=max(f[i+1][0],pos[j]);
         }
         pos[s[i]-'a']=i+1;
     }
     for(int i=0;i<m;i++) f[0][0]=max(f[0][0],pos[i]);
-    for(int i=SZ(s);~i;i--) {
+    for(int i=n;~i;i--) {
         for(int j=1;j<=18;j++) {
             f[i][j]=max(f[i][j],f[f[i][j-1]][j-1]);
         }
