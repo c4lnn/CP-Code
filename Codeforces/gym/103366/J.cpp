@@ -40,7 +40,6 @@ bool check(int mid) {
             dq.pop_front();
             dq.EB(x,i);
             mp[x]=i;
-
         }
     }
     return sum>=k;
