@@ -1,48 +1,28 @@
-// #include <bits/stdc++.h>
-#define SZ(x) (int)(x).size()
-#define ALL(x) (x).begin(), (x).end()
-#define PB push_back
-#define EB emplace_back
-#define MP make_pair
-#define FI first
-#define SE second
-// using namespace std;
-typedef double DB;
-typedef long double LD;
-typedef long long LL;
-typedef unsigned long long ULL;
-typedef pair<int, int> PII;
-typedef vector<int> VI;
-typedef vector<LL> VLL;
-typedef vector<PII> VPII;
-// head
-const int N = 1e5 + 5;
-bool vis[N], st[N];
 class Solution {
 public:
-    VPII c[N];
+    const int N = 1e5 + 5;
     vector<int> findAllPeople(int n, vector<vector<int>>& a, int s) {
-        VI ret, b;
-        memset(vis, false, sizeof vis);
-        memset(st, false, sizeof st);
+        vector<vector<pair<int, int>>> c(N);
+        vector<bool> vis(N), st(N);
+        vector<int> ret, b;
         st[0] = st[s] = true;
         for (auto x : a) {
-            b.PB(x[2]);
+            b.push_back(x[2]);
         }
-        sort(ALL(b));
-        b.resize(unique(ALL(b)) - b.begin());
+        sort(b.begin(), b.end());
+        b.resize(unique(b.begin(), b.end()) - b.begin());
         for (auto x : a) {
-            c[lower_bound(ALL(b), x[2]) - b.begin()].EB(x[0], x[1]);
+            c[lower_bound(b.begin(), b.end(), x[2]) - b.begin()].emplace_back(x[0], x[1]);
         }
-        for (int i = 0; i < SZ(b); i++) {
+        for (int i = 0; i < b.size(); i++) {
             queue<int> q;
             unordered_set<int> t;
-            unordered_map<int, VI> g;
+            unordered_map<int, vector<int>> g;
             for (auto x : c[i]) {
-                t.insert(x.FI);
-                t.insert(x.SE);
-                g[x.FI].PB(x.SE);
-                g[x.SE].PB(x.FI);
+                t.insert(x.first);
+                t.insert(x.second);
+                g[x.first].push_back(x.second);
+                g[x.second].push_back(x.first);
             }
             for (auto x : t) {
                 if (st[x]) {
@@ -52,7 +32,7 @@ public:
                     vis[x] = false;
                 }
             }
-            while (SZ(q)) {
+            while (q.size()) {
                 int u = q.front();
                 q.pop();
                 st[u] = true;
@@ -66,15 +46,9 @@ public:
         }
         for (int i = 0; i < n; i++) {
             if (st[i]) {
-                ret.PB(i);
+                ret.push_back(i);
             }
         }
         return ret;
     }
 };
-// int main() {
-//     ios::sync_with_stdio(false);
-//     cin.tie(nullptr);
-//     Solution::;
-//     return 0;
-// }
