@@ -50,8 +50,8 @@ int main()
 {
     while(read())
     {
-    	build(1,n,1,n,0);
-    	printf("%d\n",ans);
+        build(1,n,1,n,0);
+        printf("%d\n",ans);
     }
     return 0;
 }

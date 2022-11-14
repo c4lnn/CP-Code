@@ -21,7 +21,7 @@ struct AC {
     void init() {
         for(int i=0;i<=sz;i++) {
             for(int j=0;j<26;j++) tr[i][j]=0;
-        	fail[i]=tot[i]=0;
+            fail[i]=tot[i]=0;
         }
         sz=0;
     }

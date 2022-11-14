@@ -4,7 +4,7 @@
 #include<algorithm>
 
 using namespace std;
- 
+
 typedef long long ll;
 typedef pair<ll,ll> pll;
 
@@ -12,7 +12,7 @@ int T,n;
 ll a,b;
 
 pll work(int n,ll a)
-{   
+{
     if(n==0) return make_pair(0,0);
     ll cnt=1ll<<(2*n-2);
     ll len=1ll<<(n-1);
@@ -26,16 +26,16 @@ pll work(int n,ll a)
 }
 int main()
 {
-	
+
     scanf("%d",&T);
     while(T--)
     {
-  		scanf("%d%lld%lld",&n,&a,&b);
+          scanf("%d%lld%lld",&n,&a,&b);
         pll posA=work(n,a-1);
         pll posB=work(n,b-1);
         ll tx=posA.first-posB.first;
         ll ty=posA.second-posB.second;
         printf("%.0f\n",sqrt(tx*tx+ty*ty)*10);
-	} 
+    }
     return 0;
 }

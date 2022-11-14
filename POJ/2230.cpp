@@ -31,30 +31,30 @@ const int M=5e4+5;
 int n,m,cnt,nxt[M<<1],to[M<<1],head[N],top,stack[M<<1],ans[M<<1],t;
 bool st[M<<1];
 void addedge(int u,int v) {
-	nxt[++cnt]=head[u];
-	to[cnt]=v;
-	head[u]=cnt;
+    nxt[++cnt]=head[u];
+    to[cnt]=v;
+    head[u]=cnt;
 }
 void euler(int s) {
-	stack[++top]=s;
-	while(top) {
-		int u=stack[top],i=head[u];
-		while(i&&st[i]) i=nxt[i];
-		if(i) {
-			stack[++top]=to[i];
-			st[i]=true;
-			head[u]=nxt[i];
-		}
-		else top--,ans[++t]=u;
-	}
+    stack[++top]=s;
+    while(top) {
+        int u=stack[top],i=head[u];
+        while(i&&st[i]) i=nxt[i];
+        if(i) {
+            stack[++top]=to[i];
+            st[i]=true;
+            head[u]=nxt[i];
+        }
+        else top--,ans[++t]=u;
+    }
 }
 int main() {
     scanf("%d%d",&n,&m);
     for(int i=1;i<=m;i++) {
-    	int u,v;
-    	scanf("%d%d",&u,&v);
-    	addedge(u,v);
-    	addedge(v,u);
+        int u,v;
+        scanf("%d%d",&u,&v);
+        addedge(u,v);
+        addedge(v,u);
     }
     euler(1);
     for(int i=t;i;i--) printf("%d\n",ans[i]);

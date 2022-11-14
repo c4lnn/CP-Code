@@ -43,10 +43,10 @@ int main() {
         cin>>n;
         for(int i=1;i<=n;i++) cin>>a[i];
         int f=0;
-    	int b[20];
-    	memcpy(b,a,sizeof a);
+        int b[20];
+        memcpy(b,a,sizeof a);
         for(int i=0;i<=4;i++) {
-        	memcpy(a,b,sizeof b);
+            memcpy(a,b,sizeof b);
             if(dfs(0,i)) {
                 cout<<i<<endl;
                 f=1;
@@ -54,6 +54,6 @@ int main() {
             }
         }
         if(!f) cout<<"5 or more\n";
-    }    
+    }
     return 0;
 }

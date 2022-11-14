@@ -19,14 +19,14 @@ string path[N][N];
 pii man,box,ed;
 struct node
 {
-	int x,y,dir;
-	node(){}
-	node(int a,int b,int c)
-	{
-		x=a;
-		y=b;
-		dir=c;
-	}
+    int x,y,dir;
+    node(){}
+    node(int a,int b,int c)
+    {
+        x=a;
+        y=b;
+        dir=c;
+    }
 };
 
 bool valid(pii a)
@@ -42,7 +42,7 @@ void prase()
         {
             if(s[i][j]=='S') man=make_pair(i,j);
             else if(s[i][j]=='B') box=make_pair(i,j);
-            else if(s[i][j]=='T') ed=make_pair(i,j); 
+            else if(s[i][j]=='T') ed=make_pair(i,j);
         }
 }
 bool bfs_man(pii st,pii ed,pii box,string &seq)
@@ -66,7 +66,7 @@ bool bfs_man(pii st,pii ed,pii box,string &seq)
                 path[t.first][t.second]=path[now.first][now.second]+dman[i];
                 if(t==ed)
                 {
-                    seq=path[t.first][t.second];        
+                    seq=path[t.first][t.second];
                     return true;
                 }
                 q.push(t);
@@ -116,17 +116,17 @@ void bfs_box()
             string seq="";
             if(valid(nxt_box)&&bfs_man(pre_man,nxt_man,make_pair(now.x,now.y),seq)==true&&(vis[nxt_box.first][nxt_box.second][i]==-1||fbox[now.x][now.y][now.dir].length()+seq.length()+1<fbox[nxt_box.first][nxt_box.second][i].length()))
             {
-                if(vis[nxt_box.first][nxt_box.second][i]==-1) q.push(node(nxt_box.first,nxt_box.second,i)); 
-            	fbox[nxt_box.first][nxt_box.second][i]=fbox[now.x][now.y][now.dir]+seq+dbox[i];
-            	vis[nxt_box.first][nxt_box.second][i]=vis[now.x][now.y][now.dir]+1;	
+                if(vis[nxt_box.first][nxt_box.second][i]==-1) q.push(node(nxt_box.first,nxt_box.second,i));
+                fbox[nxt_box.first][nxt_box.second][i]=fbox[now.x][now.y][now.dir]+seq+dbox[i];
+                vis[nxt_box.first][nxt_box.second][i]=vis[now.x][now.y][now.dir]+1;
                 if(nxt_box==ed)
-                {   
+                {
                     if(res.first==""||vis[nxt_box.first][nxt_box.second][i]==res.second&&fbox[nxt_box.first][nxt_box.second][i].size()<res.first.size())
-                   	{
-						res.first=fbox[nxt_box.first][nxt_box.second][i];
-                    	res.second=vis[nxt_box.first][nxt_box.second][i];
-					}
-				}
+                       {
+                        res.first=fbox[nxt_box.first][nxt_box.second][i];
+                        res.second=vis[nxt_box.first][nxt_box.second][i];
+                    }
+                }
             }
         }
     }

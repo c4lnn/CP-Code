@@ -9,14 +9,14 @@ struct Node
     int x;
     int y;
     int prex;
-	int prey;
+    int prey;
 }s[5][5];
 void bfs(int x,int y)
 {
     queue<Node>q;
     s[0][0].x=0;
     s[0][0].y=0;
-	q.push(s[0][0]);
+    q.push(s[0][0]);
     while(!q.empty())
     {
         Node temp=q.front();
@@ -46,7 +46,7 @@ void print(int x,int y)
     if(x==0&&y==0)
     {
         printf("(%d, %d)\n",s[0][0].x,s[0][0].y);
-		return;
+        return;
     }
     int prex=s[x][y].prex;
     int prey=s[x][y].prey;

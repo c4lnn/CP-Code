@@ -34,44 +34,44 @@ void get_ht() {
     }
 }
 bool check(int t) {
-	bool res_is_first=false,ht_is_first=false;
-	int tot=0;
-	for(int i=1;i<=n;i++) {
-		if(ht[i]>=t) {
-			if(!ht_is_first) {		
-				memset(st,false,sizeof st);
-				st[f[sa[i-1]]]=true;
-				ht_is_first=true;
-				tot++;
-			} 
-			if(!st[f[sa[i]]]) st[f[sa[i]]]=true,tot++;
-		}
-		else {
-			if(ht_is_first) {
-				ht_is_first=false;
-				if(tot>=k) {
-					if(!res_is_first) res.clear(),res_is_first=true;
-					res.push_back(sa[i-1]);
-				}
-				tot=0;
-			}
-		}
-	}
-	if(!res_is_first) return false;
-	else return true;
+    bool res_is_first=false,ht_is_first=false;
+    int tot=0;
+    for(int i=1;i<=n;i++) {
+        if(ht[i]>=t) {
+            if(!ht_is_first) {
+                memset(st,false,sizeof st);
+                st[f[sa[i-1]]]=true;
+                ht_is_first=true;
+                tot++;
+            }
+            if(!st[f[sa[i]]]) st[f[sa[i]]]=true,tot++;
+        }
+        else {
+            if(ht_is_first) {
+                ht_is_first=false;
+                if(tot>=k) {
+                    if(!res_is_first) res.clear(),res_is_first=true;
+                    res.push_back(sa[i-1]);
+                }
+                tot=0;
+            }
+        }
+    }
+    if(!res_is_first) return false;
+    else return true;
 }
 void solve() {
     int l=0,r=n;
     while(l<r) {
-    	int mid=l+r+1>>1;
-    	if(check(mid)) l=mid;
-    	else r=mid-1;
+        int mid=l+r+1>>1;
+        if(check(mid)) l=mid;
+        else r=mid-1;
     }
     if(l) {
-    	for(int i=0;i<res.size();i++) {
-    		for(int j=0;j<l;j++) printf("%c",s[res[i]+j]);
-    		puts("");
-    	}
+        for(int i=0;i<res.size();i++) {
+            for(int j=0;j<l;j++) printf("%c",s[res[i]+j]);
+            puts("");
+        }
     }
     else puts("?");
 }

@@ -25,15 +25,15 @@ void kmp()
 int main()
 {
     int t=1;
-	while(cin>>n&&n)
+    while(cin>>n&&n)
     {
         scanf("%s",p);
         kmp();
-    	cout<<"Test case #"<<t++<<endl;
-		for(int i=2;i<=n;i++)
-			if(i%(i-v[i])==0&&i/(i-v[i])!=1)
-				cout<<i<<" "<<i/(i-v[i])<<endl;
-		cout<<endl;
-	}
+        cout<<"Test case #"<<t++<<endl;
+        for(int i=2;i<=n;i++)
+            if(i%(i-v[i])==0&&i/(i-v[i])!=1)
+                cout<<i<<" "<<i/(i-v[i])<<endl;
+        cout<<endl;
+    }
     return 0;
 }

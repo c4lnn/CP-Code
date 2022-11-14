@@ -19,8 +19,8 @@ DB l,r,a[20];
 int n;
 DB calc(DB x) {
     DB ret=0;
-	for(int i=0;i<=n;i++) ret=ret*x+a[i];
-	return ret;
+    for(int i=0;i<=n;i++) ret=ret*x+a[i];
+    return ret;
 }
 int main() {
     ios::sync_with_stdio(false);

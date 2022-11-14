@@ -28,36 +28,36 @@ typedef vector<PII> VPII;
 const int N=105;
 int fa[N];
 struct E {
-	int u,v,w;
-	E() {}
-	E(int u,int v,int w):u(u),v(v),w(w) {}
-	bool operator < (const E &a) const {
-		return w<a.w;
-	}
+    int u,v,w;
+    E() {}
+    E(int u,int v,int w):u(u),v(v),w(w) {}
+    bool operator < (const E &a) const {
+        return w<a.w;
+    }
 }e[N*N];
 int find(int x) {
-	return x==fa[x]?x:fa[x]=find(fa[x]);
+    return x==fa[x]?x:fa[x]=find(fa[x]);
 }
 int main() {
-	int n;
+    int n;
     while(~scanf("%d",&n)) {
-	    for(int i=1;i<=n;i++) fa[i]=i;
-	    int cnt=0;
-	    for(int i=1;i<=n;i++) 
-	    	for(int j=1;j<=n;j++) {
-	    		int w;
-	    		scanf("%d",&w);
-	    		if(i>j) e[++cnt]=E(i,j,w);
-	    	}
-		sort(e+1,e+1+cnt);
-		int res=0;
-		for(int i=1;i<=cnt;i++) {
-			int tx=find(e[i].u),ty=find(e[i].v);
-			if(tx==ty) continue;
-			fa[tx]=ty;
-			res+=e[i].w;
-		}
-		printf("%d\n",res);
-	}
+        for(int i=1;i<=n;i++) fa[i]=i;
+        int cnt=0;
+        for(int i=1;i<=n;i++)
+            for(int j=1;j<=n;j++) {
+                int w;
+                scanf("%d",&w);
+                if(i>j) e[++cnt]=E(i,j,w);
+            }
+        sort(e+1,e+1+cnt);
+        int res=0;
+        for(int i=1;i<=cnt;i++) {
+            int tx=find(e[i].u),ty=find(e[i].v);
+            if(tx==ty) continue;
+            fa[tx]=ty;
+            res+=e[i].w;
+        }
+        printf("%d\n",res);
+    }
     return 0;
 }

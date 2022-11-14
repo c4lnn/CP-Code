@@ -13,21 +13,21 @@ typedef pair<int,int>pii;
 int a[1005];
 int main()
 {
-	int n,m;
-	scanf("%d%d",&n,&m);
-	for(int i=1;i<=n;i++) scanf("%d",&a[i]);
-	while(m--)
-	{
-		int q;
-		scanf("%d",&q);
-		int ans=0;
-		int f=0;
-		for(int i=1;i<=n;i++)
-		{
-			if(!f&&a[i]>q) ans++,f=1;
-			else if(a[i]<=q) f=0;
-		}
-		printf("%d\n",ans);
-	}
-	return 0;
+    int n,m;
+    scanf("%d%d",&n,&m);
+    for(int i=1;i<=n;i++) scanf("%d",&a[i]);
+    while(m--)
+    {
+        int q;
+        scanf("%d",&q);
+        int ans=0;
+        int f=0;
+        for(int i=1;i<=n;i++)
+        {
+            if(!f&&a[i]>q) ans++,f=1;
+            else if(a[i]<=q) f=0;
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
 }

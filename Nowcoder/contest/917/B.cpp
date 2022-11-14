@@ -10,10 +10,10 @@ int main()
         scanf("%lld",&n);
         int ans=0;
         for(int i=1;i*i<=n;i++)
-		{
-			if(n%i==0) ans+=2;
-			if(i*i==n) ans--;
-		}
+        {
+            if(n%i==0) ans+=2;
+            if(i*i==n) ans--;
+        }
         printf("%d\n",ans);
     }
     return 0;

@@ -26,9 +26,9 @@ ll solve(ll x,ll m) {
     for(ll i=2;i*i<=m;i++) {
         ll tot=0;
         if(m%i==0) {
-	    while(m%i==0) tot++,m/=i;
-	    res=min(res,calc(x,i,tot));
-	}
+            while(m%i==0) tot++,m/=i;
+            res=min(res,calc(x,i,tot));
+        }
     }
     if(m>1) res=min(res,calc(x,m,1));
     return res;

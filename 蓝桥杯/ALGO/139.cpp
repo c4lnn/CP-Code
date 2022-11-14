@@ -25,8 +25,8 @@ typedef vector<PII> VPII;
 // head
 void solve(int a)
 {
-	if(a==0) cout<<0;
-	else if(a==1) cout<<1;
+    if(a==0) cout<<0;
+    else if(a==1) cout<<1;
     else solve(a-2),solve(a-1);
 }
 int main() {
